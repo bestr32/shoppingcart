@@ -1,0 +1,35 @@
+.logo {
+  filter: drop-shadow(0 0 0.5rem #555);
+}
+
+.main-header {
+  background: rgb(240, 240, 240);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.header__nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+.header__link {
+  color: #000;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.header__link:hover {
+  color: white;
+  text-decoration: none;
+}

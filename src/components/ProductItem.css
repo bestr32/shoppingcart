@@ -1,0 +1,9 @@
+.product {
+  padding-inline: 1em;
+}
+
+.product__order-input {
+  width: 6ch;
+  text-align: center;
+  margin-top: 0.5rem;
+}
