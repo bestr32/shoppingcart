@@ -1,9 +1,33 @@
 .product {
-  padding-inline: 1em;
+  padding: 0.5em;
+  border: 3px solid #73e9;
+  box-shadow: 0 0 1rem #73e;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: clamp(1rem, 5vw, 3rem);
 }
 
 .product__order-input {
   width: 6ch;
   text-align: center;
   margin-top: 0.5rem;
+}
+
+.product-img {
+  margin-block: 1rem;
+  border-radius: 50% 25% / 50%;
+  max-width: 100%;
+  box-shadow: 0 0 1rem black;
+  object-fit: cover;
+}
+
+.img-holder {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

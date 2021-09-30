@@ -18,7 +18,7 @@ const Homepage = ({ products }) => {
 
     setCurrentReview(customerReviews[0]);
 
-    setInterval(() => {
+    let interval = setInterval(() => {
       setCurrentReview((prevReview) => {
         if (prevReview === customerReviews[customerReviews.length - 1]) {
           return customerReviews[0];
@@ -27,20 +27,31 @@ const Homepage = ({ products }) => {
         }
       });
     }, 5000);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   return (
     <div className='homepage'>
-      <section>
+      <section className='top-burgers'>
         <h1 className='homepage__h1'>Top Burgers </h1>
+        <p>
+          <em>This is what our customers liked the most</em>
+        </p>
         <ul className='top-products'>
           {products
             .filter((product) => product.rating >= 4.5)
             .map((product) => (
-              <ProductItem key={product.id} product={product}></ProductItem>
+              <ProductItem
+                key={product.id}
+                product={product}
+                canOrder={false}
+              ></ProductItem>
             ))}
         </ul>
-        <div style={{ margin: '1rem', padding: '1rem', textAlign: 'center' }}>
+        <div className='top-burgers__link'>
           <Link to='cart' className='homepage__product-button'>
             See all burgers.
           </Link>
@@ -50,7 +61,7 @@ const Homepage = ({ products }) => {
         <p>We offer the best burgers in town.</p>
       </section>
       <section className='homepage__description-second'>
-        <p>What the customers are saying</p>
+        <p className='customers-heading'>What the customers are saying</p>
         <blockquote className='review-block'>
           <p className='review-quote'>{currentReview}</p>
         </blockquote>

@@ -7,22 +7,29 @@
 
 .homepage__h1 {
   margin-bottom: 0;
-  color: #73e;
   text-shadow: 0 0 4px #73ea;
   font-size: 3rem;
   text-align: center;
 }
 
-.top-products {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1em;
-  padding-block: 5em;
+.top-burgers {
+  color: #73e;
   max-width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.top-products {
+  display: grid;
+  gap: 1.5rem;
+  padding-block: 5em;
+  max-width: 100%;
   text-align: center;
   margin: 0 auto;
+}
+
+.top-products .product {
+  margin-inline: 2rem;
 }
 
 .homepage__description-first,
@@ -45,6 +52,13 @@
   text-shadow: 0 0 2px grey;
 }
 
+.top-burgers__link {
+  margin: 1rem;
+  margin-bottom: 5rem;
+  padding: 1rem;
+  text-align: centers;
+}
+
 .homepage__product-button {
   margin-top: 0.5rem;
   border: none;
@@ -61,10 +75,35 @@
 
 .review-block {
   font-size: 1.1rem;
+  max-width: 100%;
+  margin: 0;
 }
 
 .review-quote {
   text-decoration: underline;
+  text-align: center;
+  animation: fadeInReview cubic-bezier(0, 0, 0.37, 1.06) 5s infinite;
+}
+
+@keyframes fadeInReview {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+    filter: blur(1rem);
+  }
+  20%, 85% {
+    filter: blur(0);
+  }
+  35%,
+  85% {
+    opacity: 1;
+    transform: translateY(0rem);
+  }
+  90%,
+  100% {
+    opacity: 0;
+    filter: blur(1rem);
+  }
 }
 
 .review-quote::before,
@@ -72,7 +111,7 @@
   display: inline-block;
   font-size: 2rem;
   text-decoration: none;
-  color: rgb(207, 28, 67);
+  color: rgb(150, 60, 80);
   text-shadow: 0 1px 1px black;
 }
 
@@ -82,4 +121,14 @@
 
 .review-quote::after {
   content: close-quote;
+}
+
+@media screen and (min-width: 650px) {
+  .top-products {
+    grid-template-columns: repeat(3, minmax(75px, auto));
+  }
+
+  .top-products .product {
+    margin-inline: 0;
+  }
 }
