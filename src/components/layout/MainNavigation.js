@@ -1,7 +1,11 @@
-import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
+import CartContextProvider from '../store/cart-context';
 import './MainNavigation.css';
 
 const MainNavigation = () => {
+  const cart = useContext(CartContextProvider);
+
   return (
     <header className='main-header'>
       <img src='/Rectangle 1.svg' alt='Logo' className='logo' />
@@ -9,14 +13,32 @@ const MainNavigation = () => {
       <nav>
         <ul className='header__nav'>
           <li>
-            <Link to='/' className='header__link'>
+            <NavLink
+              to='/'
+              exact
+              className='header__link'
+              activeClassName='header__link-active'
+            >
               Home
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to='/cart' className='header__link'>
-              Cart
-            </Link>
+            <NavLink
+              to='/shop'
+              className='header__link'
+              activeClassName='header__link-active'
+            >
+              Shop
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to='/cart'
+              className='header__link'
+              activeClassName='header__link-active'
+            >
+              Cart ({cart.totalProducts})
+            </NavLink>
           </li>
         </ul>
       </nav>

@@ -4,6 +4,14 @@
   box-sizing: border-box;
 }
 
+:root {
+  --clr-primary: #73e;
+}
+
+h1 {
+  color: var(--clr-primary);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

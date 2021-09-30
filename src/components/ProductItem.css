@@ -8,7 +8,8 @@
   align-items: center;
   justify-content: space-between;
   font-weight: 700;
-  font-size: clamp(1rem, 5vw, 3rem);
+  /* font-size: clamp(1rem, 5vw, 3rem); */
+  font-size: 2rem;
 }
 
 .product__order-input {
@@ -21,6 +22,7 @@
   margin-block: 1rem;
   border-radius: 50% 25% / 50%;
   max-width: 100%;
+  max-height: 400px;
   box-shadow: 0 0 1rem black;
   object-fit: cover;
 }
@@ -30,4 +32,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.product__ordering {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 1em;
+}
+
+.btn-orders {
+  color: var(--clr-primary);
+  font-weight: bolder;
+  border: none;
+  background: #eee;
+  box-shadow: 0 0 3px black;
+  border-radius: 1rem;
+  padding: 0.3rem 1rem;
 }

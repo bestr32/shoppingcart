@@ -52,7 +52,7 @@ const Homepage = ({ products }) => {
             ))}
         </ul>
         <div className='top-burgers__link'>
-          <Link to='cart' className='homepage__product-button'>
+          <Link to='shop' className='homepage__product-button'>
             See all burgers.
           </Link>
         </div>
@@ -66,7 +66,7 @@ const Homepage = ({ products }) => {
           <p className='review-quote'>{currentReview}</p>
         </blockquote>
       </section>
-      <Link to='/cart' className='homepage__description-first'>
+      <Link to='/shop' className='homepage__description-first'>
         <p>See all burgers.</p>
       </Link>
     </div>

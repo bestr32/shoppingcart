@@ -1,0 +1,25 @@
+.shop {
+  text-align: center;
+  color: var(--clr-primary);
+}
+
+.products {
+  display: grid;
+  grid-template-columns: minmax(100px, auto);
+  max-width: 80%;
+  margin: 0 auto;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+@media screen and (min-width: 450px) {
+  .products {
+    grid-template-columns: repeat(2, minmax(100px, auto));
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .products {
+    grid-template-columns: repeat(3, minmax(100px, auto));
+  }
+}
