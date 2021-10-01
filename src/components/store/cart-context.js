@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useReducer } from 'react';
 
 const CartContext = createContext({
   products: [],
@@ -6,60 +6,66 @@ const CartContext = createContext({
   totalPrice: 0,
   addProduct: (product) => {},
   removeProduct: (id) => {},
-  countProductInCart: (id) => {},
 });
 
+const cartReducer = (state, action) => {
+  switch (action.type) {
+    case 'ADD_PRODUCT':
+      const updatedCart = [...state];
+      const updatedItemIndex = updatedCart.findIndex(
+        (obj) => obj.id === action.val.id
+      );
+
+      if (updatedItemIndex < 0) {
+        updatedCart.push({ ...action.val, quantity: 1 });
+      } else {
+        const updatedItem = { ...updatedCart[updatedItemIndex] };
+        updatedItem.quantity++;
+        updatedCart[updatedItemIndex] = updatedItem;
+      }
+
+      return [...updatedCart];
+    case 'REMOVE_PRODUCT':
+      const updatedC = [...state];
+      const updatedItemId = updatedC.findIndex(
+        (obj) => obj.id === action.val.id
+      );
+
+      if (updatedItemId >= 0 && updatedC[updatedItemId].quantity === 1) {
+        updatedC.splice(updatedItemId, 1);
+      } else {
+        const updatedItem = { ...updatedC[updatedItemId] };
+        updatedItem.quantity--;
+        updatedC[updatedItemId] = updatedItem;
+      }
+
+      return [...updatedC];
+    default:
+      return state || [];
+  }
+};
+
 export const CartContextProvider = ({ children }) => {
-  const [userProducts, setUserProducts] = useState([]);
+  const [userProducts, userProductsDispatcher] = useReducer(cartReducer, []);
 
   const addProductHandler = (product) => {
-    let count = 0;
-
-    setUserProducts((prevProducts) => prevProducts.concat(product));
-
-    userProducts.forEach((prod) => {
-      if (prod === product) {
-        count++;
-      }
-    });
-
-    return count + 1;
+    userProductsDispatcher({ type: 'ADD_PRODUCT', val: product });
   };
 
   const removeProductHandler = (product) => {
-    let count = 0;
-
-    setUserProducts((prevProducts) => {
-      let temp = prevProducts;
-      temp.splice(temp.indexOf(product), 1);
-      console.log(temp);
-      return temp;
-    });
-
-    return count;
-  };
-
-  const countProductInCart = (id) => {
-    let count = 0;
-
-    userProducts.forEach((prod) => {
-      if (prod.id === id) {
-        count++;
-      }
-    });
-
-    return count;
+    userProductsDispatcher({ type: 'REMOVE_PRODUCT', val: product });
   };
 
   const context = {
     products: userProducts,
-    totalProducts: userProducts.length,
-    totalPrice: userProducts.reduce((acc, product) => {
-      return acc + product.price;
+    totalProducts: userProducts.reduce((acc, obj) => {
+      return acc + obj.quantity;
+    }, 0),
+    totalPrice: userProducts.reduce((acc, obj) => {
+      return acc + obj.price * obj.quantity;
     }, 0),
     addProduct: addProductHandler,
     removeProduct: removeProductHandler,
-    countProductInCart,
   };
 
   return (
